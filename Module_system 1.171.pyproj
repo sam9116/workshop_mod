@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6d29e616-9ff8-4ecc-b09e-3b2d18bc142f}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>header_animations.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
+    <Content Include="variables.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="header_animations.py" />
+    <Compile Include="header_common.py" />
+    <Compile Include="header_dialogs.py" />
+    <Compile Include="header_factions.py" />
+    <Compile Include="header_game_menus.py" />
+    <Compile Include="header_ground_types.py" />
+    <Compile Include="header_items.py" />
+    <Compile Include="header_item_modifiers.py" />
+    <Compile Include="header_map_icons.py" />
+    <Compile Include="header_meshes.py" />
+    <Compile Include="header_mission_templates.py" />
+    <Compile Include="header_mission_types.py" />
+    <Compile Include="header_music.py" />
+    <Compile Include="header_operations.py" />
+    <Compile Include="header_particle_systems.py" />
+    <Compile Include="header_parties.py" />
+    <Compile Include="header_postfx.py" />
+    <Compile Include="header_presentations.py" />
+    <Compile Include="header_quests.py" />
+    <Compile Include="header_scenes.py" />
+    <Compile Include="header_scene_props.py" />
+    <Compile Include="header_skills.py" />
+    <Compile Include="header_skins.py" />
+    <Compile Include="header_sounds.py" />
+    <Compile Include="header_strings.py" />
+    <Compile Include="header_tableau_materials.py" />
+    <Compile Include="header_terrain_types.py" />
+    <Compile Include="header_triggers.py" />
+    <Compile Include="header_troops.py" />
+    <Compile Include="ID_animations.py" />
+    <Compile Include="ID_factions.py" />
+    <Compile Include="ID_info_pages.py" />
+    <Compile Include="ID_items.py" />
+    <Compile Include="ID_map_icons.py" />
+    <Compile Include="ID_menus.py" />
+    <Compile Include="ID_meshes.py" />
+    <Compile Include="ID_mission_templates.py" />
+    <Compile Include="ID_music.py" />
+    <Compile Include="ID_particle_systems.py" />
+    <Compile Include="ID_parties.py" />
+    <Compile Include="ID_party_templates.py" />
+    <Compile Include="ID_postfx_params.py" />
+    <Compile Include="ID_presentations.py" />
+    <Compile Include="ID_quests.py" />
+    <Compile Include="ID_scenes.py" />
+    <Compile Include="ID_scene_props.py" />
+    <Compile Include="ID_scripts.py" />
+    <Compile Include="ID_skills.py" />
+    <Compile Include="ID_sounds.py" />
+    <Compile Include="ID_strings.py" />
+    <Compile Include="ID_tableau_materials.py" />
+    <Compile Include="ID_troops.py" />
+    <Compile Include="module_animations.py" />
+    <Compile Include="module_constants.py" />
+    <Compile Include="module_dialogs.py" />
+    <Compile Include="module_factions.py" />
+    <Compile Include="module_game_menus.py" />
+    <Compile Include="module_info.py" />
+    <Compile Include="module_info_pages.py" />
+    <Compile Include="module_items.py" />
+    <Compile Include="module_map_icons.py" />
+    <Compile Include="module_meshes.py" />
+    <Compile Include="module_mission_templates.py" />
+    <Compile Include="module_music.py" />
+    <Compile Include="module_particle_systems.py" />
+    <Compile Include="module_parties.py" />
+    <Compile Include="module_party_templates.py" />
+    <Compile Include="module_postfx.py" />
+    <Compile Include="module_presentations.py" />
+    <Compile Include="module_quests.py" />
+    <Compile Include="module_scenes.py" />
+    <Compile Include="module_scene_props.py" />
+    <Compile Include="module_scripts.py" />
+    <Compile Include="module_simple_triggers.py" />
+    <Compile Include="module_skills.py" />
+    <Compile Include="module_skins.py" />
+    <Compile Include="module_sounds.py" />
+    <Compile Include="module_strings.py" />
+    <Compile Include="module_tableau_materials.py" />
+    <Compile Include="module_triggers.py" />
+    <Compile Include="module_troops.py" />
+    <Compile Include="module_variables.py" />
+    <Compile Include="process_animations.py" />
+    <Compile Include="process_common.py" />
+    <Compile Include="process_dialogs.py" />
+    <Compile Include="process_factions.py" />
+    <Compile Include="process_game_menus.py" />
+    <Compile Include="process_global_variables.py" />
+    <Compile Include="process_global_variables_unused.py" />
+    <Compile Include="process_info_pages.py" />
+    <Compile Include="process_init.py" />
+    <Compile Include="process_items.py" />
+    <Compile Include="process_line_correction.py" />
+    <Compile Include="process_map_icons.py" />
+    <Compile Include="process_meshes.py" />
+    <Compile Include="process_mission_tmps.py" />
+    <Compile Include="process_music.py" />
+    <Compile Include="process_operations.py" />
+    <Compile Include="process_particle_sys.py" />
+    <Compile Include="process_parties.py" />
+    <Compile Include="process_party_tmps.py" />
+    <Compile Include="process_postfx.py" />
+    <Compile Include="process_presentations.py" />
+    <Compile Include="process_quests.py" />
+    <Compile Include="process_scenes.py" />
+    <Compile Include="process_scene_props.py" />
+    <Compile Include="process_scripts.py" />
+    <Compile Include="process_simple_triggers.py" />
+    <Compile Include="process_skills.py" />
+    <Compile Include="process_skins.py" />
+    <Compile Include="process_sounds.py" />
+    <Compile Include="process_strings.py" />
+    <Compile Include="process_tableau_materials.py" />
+    <Compile Include="process_tags_unused.py" />
+    <Compile Include="process_troops.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
