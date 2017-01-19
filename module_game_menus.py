@@ -7200,23 +7200,21 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         
          (assign, ":num_of_stacks", 0),
     (party_get_num_companion_stacks, ":num_of_stacks", "$g_encountered_party"),
-    (assign, reg3, 1182),
-    (assign, reg4, 0),
+    (assign, reg63, 1182),
+    (assign, reg65, 0),
     (try_for_range, ":i", 0, ":num_of_stacks"),
             
         (party_stack_get_troop_id, ":stack_troop", "$g_encountered_party", ":i"),
-        (assign, reg0, ":i"),
-        #(display_message,"@try #{reg0}"),  
-        
-        (assign, reg0, ":stack_troop"),
+
+        (assign, reg62, ":stack_troop"),
         #(display_message, "@troop ID:{reg0}"),
         (try_begin),
-            (eq, ":stack_troop", reg3),
-                (assign,reg4,1),
+            (eq, ":stack_troop", reg63),
+                (assign,reg65,1),
                 #(display_message, "@true or false: {reg4}"),
         (try_end),
     (try_end),
-          (eq,reg4,1),
+          (eq,reg65,1),
           #(display_message, "@true or false: {reg4}"),
         
         
@@ -7225,32 +7223,32 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         
       ],"Armor.",[(jump_to_menu, "mnu_armor_menu")]),
       ("weapon",[
-      (assign, ":num_of_stacks", 0),
+              
+         (assign, ":num_of_stacks", 0),
     (party_get_num_companion_stacks, ":num_of_stacks", "$g_encountered_party"),
-    (assign, reg3, 1182),
-    (assign, reg4, 0),
+    (assign, reg63, 1182),
+    (assign, reg65, 0),
     (try_for_range, ":i", 0, ":num_of_stacks"),
             
         (party_stack_get_troop_id, ":stack_troop", "$g_encountered_party", ":i"),
-        (assign, reg0, ":i"),
-        #(display_message,"@try #{reg0}"),  
-        
-        (assign, reg0, ":stack_troop"),
+
+        (assign, reg62, ":stack_troop"),
         #(display_message, "@troop ID:{reg0}"),
         (try_begin),
-            (eq, ":stack_troop", reg3),
-                (assign,reg4,1),
+            (eq, ":stack_troop", reg63),
+                (assign,reg65,1),
                 #(display_message, "@true or false: {reg4}"),
         (try_end),
     (try_end),
-          (eq,reg4,1),
+          (eq,reg65,1),
           #(display_message, "@true or false: {reg4}"),
+
           
           ],"Weapon.",[(jump_to_menu, "mnu_weapon_menu")]),
       ("go_back_dot",[],"Go back.",[(jump_to_menu, "$g_next_menu")]),]),
 
   ("armor_menu",0,
-    "Your decide to order a batch of dirt-cheap armor(5 Mail Mittens, 5 Mail Chausses, 5 Haubergeon and 5 Flat Topped Helmets),\it will cost you 1000 denars.",
+    "Your decide to order a batch of dirt-cheap armor(5 Mail Mittens, 5 Mail Chausses, 5 Haubergeon and 5 Flat Topped Helmets), it will cost you 1000 denars.",
     "none",
     [],
     [("order_armor_cont",[(store_troop_gold, ":cur_gold", "trp_player"),
