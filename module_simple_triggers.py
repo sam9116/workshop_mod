@@ -2577,6 +2577,63 @@ simple_triggers = [
     (try_end),
     ]),
 
+(1,[
+
+    (try_for_range, ":center_no", villages_begin, villages_end),
+     (party_slot_eq, ":center_no", slot_town_lord, "trp_player"),
+      
+       (party_get_slot, ":goornogo",":center_no",slot_armor_production),
+
+      (eq,":goornogo",1),
+
+      (str_store_party_name, s4, ":center_no"),
+      (display_log_message, "@Begin armor production at {s4}"),
+
+
+      (party_get_slot, ":elder", ":center_no", slot_town_elder),      
+      (display_log_message, "@Getting elder id of {s4}"),
+      (store_add,":productbin",":elder",140),
+      (display_log_message, "@Getting product bin of {s4}"),
+       (troop_get_inventory_capacity, ":inv_size", ":productbin"),
+
+        (try_for_range, ":i_slot", 0, ":inv_size"),
+         (troop_get_inventory_slot, ":item_id", ":productbin", ":i_slot"),
+
+          (eq, ":item_id", "itm_iron"),
+          (try_begin),
+          (troop_ensure_inventory_space,":productbin",4),
+	      (troop_remove_item,":productbin",":item_id"),
+          (troop_add_items,":productbin","itm_mail_mittens",1),
+          (troop_add_items,":productbin","itm_mail_chausses",1),
+          (troop_add_items,":productbin","itm_haubergeon",1),
+          (troop_add_items,":productbin","itm_flat_topped_helmet",1),
+          (display_log_message, "@{s4} has produced some armor."),
+          
+          (else_try),
+          (display_log_message, "@There is no more space left at {s4}, halting production"),
+          (party_set_slot,":center_no",slot_armor_production,0),
+          (try_end),
+
+        (try_end),
+        (display_log_message, "@There are no more iron at {s4}, halting production"),
+        (party_set_slot,":center_no",slot_armor_production,0),
+
+
+
+
+
+
+
+   
+    (try_end),
+    
+    
+    
+    
+    
+    
+    ]),
+
   # Adding tournaments to towns
   # Adding bandits to towns and villages
   (24,

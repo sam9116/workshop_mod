@@ -522,6 +522,9 @@ slot_center_shipyards			= 231 #naval stores - uses timber, pitch, and linen
 slot_center_household_gardens   = 232 #cabbages
 slot_production_sources_end = 233
 
+slot_weapon_production = 234
+slot_armor_production = 235
+
 #all spice comes overland to Tulga
 #all dyes come by sea to Jelkala
 

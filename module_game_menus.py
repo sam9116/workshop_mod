@@ -3381,7 +3381,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
                         
             (this_or_next | le, ":num_enemy_regulars_remaining", 0), #battle won
             (le, ":num_enemy_regulars_remaining",  "$num_routed_enemies"), #replaced for above line because we do not want routed agents to spawn again
-                                                                           #in next turn of battle.
+                                                                           #in
+                                                                                                                                                     #next
+                                                                                                                                                                                                                               #turn
+                                                                                                                                                                                                                               #of
+                                                                                                                                                                                                                               #battle.
 
             (assign, ":enemy_finished",1),
           (else_try),
@@ -3389,7 +3393,10 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
             
             (this_or_next | le, ":num_enemy_regulars_remaining", 0), 
             (le, "$g_enemy_fit_for_battle", "$num_routed_enemies"),  #replaced for above line because we do not want routed agents to spawn again
-                                                                     #in next turn of battle.
+                                                                     #in next
+                                                                                                                                        #turn
+                                                                                                                                                                                                           #of
+                                                                                                                                                                                                           #battle.
             
             (ge, "$g_friend_fit_for_battle",1),
             (assign, ":enemy_finished",1),
@@ -3408,7 +3415,10 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
 
             #(eq, ":num_our_regulars_remaining", 0), #battle lost
             (le, ":num_our_regulars_remaining",  "$num_routed_us"), #replaced for above line because we do not want routed agents to spawn again
-                                                                    #in next turn of battle.
+                                                                    #in next
+                                                                                                                                       #turn
+                                                                                                                                                                                                          #of
+                                                                                                                                                                                                          #battle.
 
             (assign,  ":friends_finished", 1),
           (else_try),
@@ -3744,7 +3754,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         (assign, ":num_our_regulars_remaining", reg0),
         (store_add, ":num_routed_us_plus_one", "$num_routed_us", 1),
         (le, ":num_our_regulars_remaining", ":num_routed_us_plus_one"), #replaced for above line because we do not want routed agents to spawn again
-                                                                        #in next turn of battle.
+                                                                        #in
+                                                                                                                                               #next
+                                                                                                                                                                                                                      #turn
+                                                                                                                                                                                                                      #of
+                                                                                                                                                                                                                      #battle.
         (assign, "$no_soldiers_left", 1),
         (str_store_string, s4, "str_order_attack_failure"),
       (else_try),
@@ -3752,7 +3766,10 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         (assign, ":num_enemy_regulars_remaining", reg0),
         (this_or_next | le, ":num_enemy_regulars_remaining", 0),
         (le, ":num_enemy_regulars_remaining", "$num_routed_enemies"), #replaced for above line because we do not want routed agents to spawn again
-                                                                      #in next turn of battle.
+                                                                      #in next
+                                                                                                                                           #turn
+                                                                                                                                                                                                                #of
+                                                                                                                                                                                                                #battle.
         (assign, ":continue", 0),
         (party_get_num_companion_stacks, ":party_num_stacks", "p_collective_enemy"),
         (try_begin),
@@ -4014,7 +4031,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
           
           (party_get_num_companion_stacks, ":num_stacks", "p_total_enemy_casualties"), #p_encountered changed to total_enemy_casualties
           (try_for_range, ":stack_no", "$last_defeated_hero", ":num_stacks"), #May 31 bug note -- this now returns some heroes in victorious party as well
-                                                                              #as in the other party
+                                                                              #as
+                                                                                                                                                           #in
+                                                                                                                                                                                                                                        #the
+                                                                                                                                                                                                                                        #other
+                                                                                                                                                                                                                                        #party
             (eq, ":break", 0),
             (party_stack_get_troop_id, ":stack_troop", "p_total_enemy_casualties", ":stack_no"),
             (party_stack_get_troop_dna, ":stack_troop_dna", "p_total_enemy_casualties", ":stack_no"),
@@ -4504,7 +4525,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
             
             (this_or_next | le, ":num_enemy_regulars_remaining", 0), #battle won
             (le, ":num_enemy_regulars_remaining", "$num_routed_enemies"), #replaced for above line because we do not want routed agents to spawn again
-                                                                          #in next turn of battle.
+                                                                          #in
+                                                                                                                                                   #next
+                                                                                                                                                                                                                            #turn
+                                                                                                                                                                                                                            #of
+                                                                                                                                                                                                                            #battle.
             
             (assign, ":enemy_finished",1),
           (else_try),
@@ -4527,7 +4552,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
             
             #(eq, ":num_ally_regulars_remaining", 0), #battle lost
             (le, ":num_ally_regulars_remaining",  "$num_routed_allies"), #replaced for above line because we do not want routed agents to spawn again
-                                                                         #in next turn of battle.
+                                                                         #in
+                                                                                                                                                 #next
+                                                                                                                                                                                                                         #turn
+                                                                                                                                                                                                                         #of
+                                                                                                                                                                                                                         #battle.
             
             (assign, ":battle_lost",1),
           (try_end),
@@ -4637,7 +4666,9 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
                                       
          #(le, ":num_our_regulars_remaining", 0),
          (le, ":num_our_regulars_remaining", "$num_routed_us"), #replaced for above line because we do not want routed agents to spawn again
-                                                                #in next turn of battle.
+                                                                #in next turn
+                                                                                                                               #of
+                                                                                                                                                                                              #battle.
                                       
          (assign, "$no_soldiers_left", 1),
          (str_store_string, s4, "str_join_order_attack_failure"),
@@ -4647,7 +4678,10 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
 
          (this_or_next | le, ":num_enemy_regulars_remaining", 0),
          (le, ":num_enemy_regulars_remaining", "$num_routed_enemies"), #replaced for above line because we do not want routed agents to spawn again
-                                                                       #in next turn of battle.
+                                                                       #in next
+                                                                                                                                             #turn
+                                                                                                                                                                                                                   #of
+                                                                                                                                                                                                                   #battle.
 
          (assign, "$g_battle_result", 1),
          (assign, "$no_soldiers_left", 1),
@@ -6746,6 +6780,60 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
        ,"Manage this village.",
        [(assign, "$g_next_menu", "mnu_village"),
            (jump_to_menu, "mnu_center_manage"),]),
+           ("village_station_troops",
+      [(party_get_slot, ":town_lord", "$current_town", slot_town_lord),
+	    (str_clear, s10),
+		  
+	    (assign, ":player_can_draw_from_garrison", 0), 
+		(try_begin), #option 1 - player is town lord
+		  (eq, ":town_lord", "trp_player"),
+		  (assign, ":player_can_draw_from_garrison", 1),
+		(else_try), #option 2 - town is unassigned and part of the player faction
+		  (store_faction_of_party, ":faction", "$g_encountered_party"),
+		  (eq, ":faction", "fac_player_supporters_faction"),			
+		  (neg | party_slot_ge, "$g_encountered_party", slot_town_lord, active_npcs_begin), #ie, zero or -1
+
+		  (assign, ":player_can_draw_from_garrison", 1),
+		(else_try), #option 3 - town was captured by player
+		  (lt, ":town_lord", 0), #ie, unassigned
+		  (store_faction_of_party, ":castle_faction", "$g_encountered_party"),
+		  (eq, "$players_kingdom", ":castle_faction"),
+		  
+		  (eq, "$g_encountered_party", "$g_castle_requested_by_player"),
+
+		  (str_store_string, s10, "str_retrieve_garrison_warning"),
+		  (assign, ":player_can_draw_from_garrison", 1),
+		(else_try),
+		  (lt, ":town_lord", 0), #ie, unassigned
+		  (store_faction_of_party, ":castle_faction", "$g_encountered_party"),
+		  (eq, "$players_kingdom", ":castle_faction"),
+		  
+		  (store_party_size_wo_prisoners, ":party_size", "$g_encountered_party"),
+		  (eq, ":party_size", 0),
+			
+		  (str_store_string, s10, "str_retrieve_garrison_warning"),
+		  (assign, ":player_can_draw_from_garrison", 1),
+		(else_try),
+		  (party_slot_ge, "$g_encountered_party", slot_town_lord, active_npcs_begin),
+		  (store_faction_of_party, ":castle_faction", "$g_encountered_party"),
+		  (eq, "$players_kingdom", ":castle_faction"),
+		  
+		  (troop_slot_eq, "trp_player", slot_troop_spouse, ":town_lord"),		    
+
+		  (assign, ":player_can_draw_from_garrison", 1),
+        (try_end),
+
+        (try_begin),#does this center contain manor improvement??
+        
+            (party_slot_eq, "$current_town", slot_party_type, spt_village),
+            (party_slot_eq, "$current_town", slot_center_has_manor, 0),
+            (assign, ":player_can_draw_from_garrison", 0),
+        (try_end),
+            
+
+        (eq, ":player_can_draw_from_garrison", 1),],
+      "Manage the garrison(village) {s10}",
+      [(change_screen_exchange_members,1),]),
       ("recruit_volunteers",
       [(call_script, "script_cf_village_recruit_volunteers_cond"),]
        ,"Recruit Volunteers.",
@@ -7107,54 +7195,7 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
        (val_max, reg8, 1),
        (store_sub, reg9, reg8, 1),
      (try_end),],
-    [("castle_station_troops",
-      [(party_get_slot, ":town_lord", "$current_town", slot_town_lord),
-	    (str_clear, s10),
-		  
-	    (assign, ":player_can_draw_from_garrison", 0), 
-		(try_begin), #option 1 - player is town lord
-		  (eq, ":town_lord", "trp_player"),
-		  (assign, ":player_can_draw_from_garrison", 1),
-		(else_try), #option 2 - town is unassigned and part of the player faction
-		  (store_faction_of_party, ":faction", "$g_encountered_party"),
-		  (eq, ":faction", "fac_player_supporters_faction"),			
-		  (neg | party_slot_ge, "$g_encountered_party", slot_town_lord, active_npcs_begin), #ie, zero or -1
-
-		  (assign, ":player_can_draw_from_garrison", 1),
-		(else_try), #option 3 - town was captured by player
-		  (lt, ":town_lord", 0), #ie, unassigned
-		  (store_faction_of_party, ":castle_faction", "$g_encountered_party"),
-		  (eq, "$players_kingdom", ":castle_faction"),
-		  
-		  (eq, "$g_encountered_party", "$g_castle_requested_by_player"),
-
-		  (str_store_string, s10, "str_retrieve_garrison_warning"),
-		  (assign, ":player_can_draw_from_garrison", 1),
-		(else_try),
-		  (lt, ":town_lord", 0), #ie, unassigned
-		  (store_faction_of_party, ":castle_faction", "$g_encountered_party"),
-		  (eq, "$players_kingdom", ":castle_faction"),
-		  
-		  (store_party_size_wo_prisoners, ":party_size", "$g_encountered_party"),
-		  (eq, ":party_size", 0),
-			
-		  (str_store_string, s10, "str_retrieve_garrison_warning"),
-		  (assign, ":player_can_draw_from_garrison", 1),
-		(else_try),
-		  (party_slot_ge, "$g_encountered_party", slot_town_lord, active_npcs_begin),
-		  (store_faction_of_party, ":castle_faction", "$g_encountered_party"),
-		  (eq, "$players_kingdom", ":castle_faction"),
-		  
-		  (troop_slot_eq, "trp_player", slot_troop_spouse, ":town_lord"),		    
-
-		  (assign, ":player_can_draw_from_garrison", 1),
-		(try_end),
-
-        (eq, ":player_can_draw_from_garrison", 1),],
-      "Manage the garrison {s10}",
-      [(change_screen_exchange_members,1),]),
-
-      ("make_stuff",[(party_slot_eq, "$g_encountered_party",slot_center_has_workshop, 1),],"Make_Stuff",[(jump_to_menu, "mnu_stuff_selection")],),
+    [("make_stuff",[(party_slot_eq, "$g_encountered_party",slot_center_has_workshop, 1),],"Make_Stuff",[(jump_to_menu, "mnu_stuff_selection")],),
         ("center_build_workshop",[(eq, reg6, 0),
                              (party_slot_eq, "$g_encountered_party", slot_party_type, spt_village),
                              (party_slot_eq, "$g_encountered_party", slot_center_has_workshop, 0),],
@@ -7192,13 +7233,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
                                   (jump_to_menu, "mnu_center_improve"),]),
                            
       ("go_back_dot",[],"Go back.",[(jump_to_menu, "$g_next_menu")]),],),
-   ("stuff_selection",0,
+  ("stuff_selection",0,
     "What do you want to make?",
     "none",
     [],
-    [("armor",[
-        
-         (assign, ":num_of_stacks", 0),
+    [("armor",[(assign, ":num_of_stacks", 0),
     (party_get_num_companion_stacks, ":num_of_stacks", "$g_encountered_party"),
     (assign, reg63, 1182),
     (assign, reg65, 0),
@@ -7222,9 +7261,7 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         
         
       ],"Armor.",[(jump_to_menu, "mnu_armor_menu")]),
-      ("weapon",[
-              
-         (assign, ":num_of_stacks", 0),
+      ("weapon",[(assign, ":num_of_stacks", 0),
     (party_get_num_companion_stacks, ":num_of_stacks", "$g_encountered_party"),
     (assign, reg63, 1182),
     (assign, reg65, 0),
@@ -7237,6 +7274,7 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         (try_begin),
             (eq, ":stack_troop", reg63),
                 (assign,reg65,1),
+                (party_stack_get_size,reg56,"$g_encountered_party",":i"),
                 #(display_message, "@true or false: {reg4}"),
         (try_end),
     (try_end),
@@ -7248,31 +7286,28 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
       ("go_back_dot",[],"Go back.",[(jump_to_menu, "$g_next_menu")]),]),
 
   ("armor_menu",0,
-    "Your decide to order a batch of dirt-cheap armor(5 Mail Mittens, 5 Mail Chausses, 5 Haubergeon and 5 Flat Topped Helmets), it will cost you 1000 denars.",
+    "Your decide to order a batch of dirt-cheap armor(5 Mail Mittens, 5 Mail Chausses, 5 Haubergeon and 5 Flat Topped Helmets), it will cost you 1000 denars, it will take about {reg56} hours.",
     "none",
-    [],
+    [ ],
     [("order_armor_cont",[(store_troop_gold, ":cur_gold", "trp_player"),
-                      (ge, ":cur_gold", 500)],
+                      (ge, ":cur_gold", 500),
+                      (party_slot_eq, "$g_encountered_party", slot_armor_production, 0),],
       "Go on.", [(assign, "$current_town", "$g_encountered_party"),
                  (try_begin),
                    (call_script, "script_cf_enter_center_location_bandit_check"),
                  (else_try),
-                   (troop_remove_gold, "trp_player", 500),
-                   (party_get_slot, ":merchant_troop", "$g_encountered_party", slot_town_elder),
-                   (troop_clear_inventory,"trp_temp_array_a"),
-                   (call_script, "script_troop_copy_inventory" ,"trp_temp_array_a", ":merchant_troop", skip_equipped),
-                   (troop_add_items,":merchant_troop","itm_mail_mittens",5),
-                   (troop_add_items,":merchant_troop","itm_mail_chausses",5),
-                   (troop_add_items,":merchant_troop","itm_haubergeon",5),
-                   (troop_add_items,":merchant_troop","itm_flat_topped_helmet",5),
-                   (reset_price_rates,0),
-                   (set_price_rate_for_item,"itm_mail_mittens",1),
-                   (set_price_rate_for_item,"itm_mail_chausses",1),
-                   (set_price_rate_for_item,"itm_haubergeon",1),
-                   (set_price_rate_for_item,"itm_flat_topped_helmet",1),
-                   (change_screen_trade, ":merchant_troop"),
-                   (reset_price_rates,0),
+                   (party_set_slot,"$current_town",slot_armor_production,1),
                  (try_end),]),
+
+
+     ("order_armor_halt",[ (party_slot_eq, "$g_encountered_party", slot_armor_production, 1),], "Halt current production",
+       [(assign, "$current_town", "$g_encountered_party"),
+                 (try_begin),
+                   (call_script, "script_cf_enter_center_location_bandit_check"),
+                 (else_try),
+                   (party_set_slot,"$current_town",slot_armor_production,0),
+                 (try_end),]),
+
      ("armor_forget_it",[(store_troop_gold, ":cur_gold", "trp_player"),
                    (ge, ":cur_gold", reg5)],
       "Forget it.", [(jump_to_menu,"mnu_center_manage")]),
@@ -7287,7 +7322,19 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
     "Your decide to order a batch of dirt-cheap weapons,it will cost you 1000 denars.",
     "none",
     [],
-    [("go_back_dot",[],"Go back.",[(jump_to_menu, "mnu_center_manage")]),]),
+    [("order_weapon_cont",[(store_troop_gold, ":cur_gold", "trp_player"),
+                      (ge, ":cur_gold", 500)],
+      "Go on.", [(assign, "$current_town", "$g_encountered_party"),
+                 (try_begin),
+                   (call_script, "script_cf_enter_center_location_bandit_check"),
+                 (else_try),
+                   (party_set_slot,"$current_town",slot_weapon_production,1),
+                 (try_end),]),
+     ("weapon_forget_it",[(store_troop_gold, ":cur_gold", "trp_player"),
+                   (ge, ":cur_gold", reg5)],
+      "Forget it.", [(jump_to_menu,"mnu_center_manage")]), ("weapon_poor_fuck",[(store_troop_gold, ":cur_gold", "trp_player"),
+                                 (lt, ":cur_gold", 500)],
+      "I don't have enough money for that.", [(jump_to_menu, "mnu_center_manage"),]),("go_back_dot",[],"Go back.",[(jump_to_menu, "mnu_center_manage")]),]),
 
 
   ("center_improve",0,
@@ -8108,9 +8155,11 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
              (faction_get_slot, ":tier_3_troop", ":town_original_faction", slot_faction_tier_3_troop),
            (try_end),
            (try_begin), #think about this, should castle guard have to go nearby fire too?  If he do
-                        #not go, killing 2 armored guard is too hard for player.  For now he goes too.
+                        #not go, killing 2 armored guard is too hard for
+                                               #player.  For now he goes too.
              #if guards have not gone to some other important happening at
-                                    #nearby villages, then spawn 4 guards.  (example : fire)
+                                    #nearby villages, then spawn 4 guards.
+                                                           #(example : fire)
              (party_get_slot, ":last_nearby_fire_time", "$current_town", slot_town_last_nearby_fire_time),
              (store_current_hours, ":cur_time"),
              (store_add, ":fire_finish_time", ":last_nearby_fire_time", fire_duration),
@@ -8762,29 +8811,8 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
            (else_try),
              (jump_to_menu,"mnu_town_trade"),
            (try_end),]),
-
-      ("walled_center_manage",
-      [(neg | party_slot_eq, "$current_town", slot_village_state, svs_under_siege),
-        (party_slot_eq, "$current_town", slot_town_lord, "trp_player"),
-        (assign, reg0, 1),
-        (try_begin),
-          (party_slot_eq, "$current_town", slot_party_type, spt_castle),
-          (assign, reg0, 0),
-        (try_end),],
-       "Manage this {reg0?town:castle}.",
-       [(assign, "$g_next_menu", "mnu_town"),
-           (jump_to_menu, "mnu_center_manage"),]),
-		
-      ("walled_center_move_court",
-      [(neg | party_slot_eq, "$current_town", slot_village_state, svs_under_siege),
-        (faction_slot_eq, "fac_player_supporters_faction", slot_faction_leader, "trp_player"),
-        (party_slot_eq, "$current_town", slot_town_lord, "trp_player"),
-        (eq, "$g_encountered_party_faction", "fac_player_supporters_faction"),
-        (neq, "$g_player_court", "$current_town"),],
-      "Move your court here.",
-      [(jump_to_menu, "mnu_establish_court"),]),
-								
-      ("castle_station_troops",
+        
+           ("castle_station_troops",
       [(party_get_slot, ":town_lord", "$current_town", slot_town_lord),
 	    (str_clear, s10),
 		  
@@ -8825,11 +8853,36 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
 		  (troop_slot_eq, "trp_player", slot_troop_spouse, ":town_lord"),		    
 
 		  (assign, ":player_can_draw_from_garrison", 1),
-		(try_end),
+
+        (try_end),
+            
 
         (eq, ":player_can_draw_from_garrison", 1),],
       "Manage the garrison {s10}",
       [(change_screen_exchange_members,1),]),
+
+      ("walled_center_manage",
+      [(neg | party_slot_eq, "$current_town", slot_village_state, svs_under_siege),
+        (party_slot_eq, "$current_town", slot_town_lord, "trp_player"),
+        (assign, reg0, 1),
+        (try_begin),
+          (party_slot_eq, "$current_town", slot_party_type, spt_castle),
+          (assign, reg0, 0),
+        (try_end),],
+       "Manage this {reg0?town:castle}.",
+       [(assign, "$g_next_menu", "mnu_town"),
+           (jump_to_menu, "mnu_center_manage"),]),
+		
+      ("walled_center_move_court",
+      [(neg | party_slot_eq, "$current_town", slot_village_state, svs_under_siege),
+        (faction_slot_eq, "fac_player_supporters_faction", slot_faction_leader, "trp_player"),
+        (party_slot_eq, "$current_town", slot_town_lord, "trp_player"),
+        (eq, "$g_encountered_party_faction", "fac_player_supporters_faction"),
+        (neq, "$g_player_court", "$current_town"),],
+      "Move your court here.",
+      [(jump_to_menu, "mnu_establish_court"),]),
+								
+      
 
       ("castle_wait",
       [#(party_slot_eq,"$current_town",slot_party_type, spt_castle),
@@ -10879,7 +10932,17 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
              (party_relocate_near_party, "p_main_party", "$capturer_party", 2),
            (try_end),
            (call_script, "script_set_parties_around_player_ignore_player", 8, 12), #it was radius:2 and hours:4, but players make lots of complains about
-                                                                                   #consequent battle losses after releases from captivity then I changed this.
+                                                                                   #consequent
+                                                                                                                                                                     #battle
+                                                                                                                                                                                                                                                       #losses
+                                                                                                                                                                                                                                                       #after
+                                                                                                                                                                                                                                                       #releases
+                                                                                                                                                                                                                                                       #from
+                                                                                                                                                                                                                                                       #captivity
+                                                                                                                                                                                                                                                       #then
+                                                                                                                                                                                                                                                       #I
+                                                                                                                                                                                                                                                       #changed
+                                                                                                                                                                                                                                                       #this.
            (assign, "$g_player_icon_state", pis_normal),
            (set_camera_follow_party, "p_main_party"),
            (rest_for_hours, 0, 0, 0), #stop resting
@@ -10960,7 +11023,17 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
              (party_relocate_near_party, "p_main_party", "$capturer_party", 2),
            (try_end),
            (call_script, "script_set_parties_around_player_ignore_player", 8, 12), #it was radius:2 and hours:12, but players make lots of complains about
-                                                                                   #consequent battle losses after releases from captivity then I changed this.
+                                                                                   #consequent
+                                                                                                                                                                     #battle
+                                                                                                                                                                                                                                                       #losses
+                                                                                                                                                                                                                                                       #after
+                                                                                                                                                                                                                                                       #releases
+                                                                                                                                                                                                                                                       #from
+                                                                                                                                                                                                                                                       #captivity
+                                                                                                                                                                                                                                                       #then
+                                                                                                                                                                                                                                                       #I
+                                                                                                                                                                                                                                                       #changed
+                                                                                                                                                                                                                                                       #this.
            (assign, "$g_player_icon_state", pis_normal),
            (set_camera_follow_party, "p_main_party"),
            (rest_for_hours, 0, 0, 0), #stop resting
@@ -10982,7 +11055,17 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
           (party_relocate_near_party, "p_main_party", "$capturer_party", 1),
         (try_end),
         (call_script, "script_set_parties_around_player_ignore_player", 8, 12), #it was radius:2 and hours:6, but players make lots of complains about
-                                                                                #consequent battle losses after releases from captivity then I changed this.
+                                                                                #consequent
+                                                                                                                                                               #battle
+                                                                                                                                                                                                                                              #losses
+                                                                                                                                                                                                                                              #after
+                                                                                                                                                                                                                                              #releases
+                                                                                                                                                                                                                                              #from
+                                                                                                                                                                                                                                              #captivity
+                                                                                                                                                                                                                                              #then
+                                                                                                                                                                                                                                              #I
+                                                                                                                                                                                                                                              #changed
+                                                                                                                                                                                                                                              #this.
         (assign, "$g_player_icon_state", pis_normal),
         (set_camera_follow_party, "p_main_party"),
         (rest_for_hours, 0, 0, 0), #stop resting

@@ -315,6 +315,7 @@ scripts = [
         (store_add, ":cur_object_no", "scn_town_1_center", ":offset"),
         (party_set_slot,":town_no", slot_town_center, ":cur_object_no"),
         (party_set_slot,":town_no", slot_town_reinforcement_party_template, "pt_center_reinforcements"),
+
       (try_end),
 	  	  
 # Castles
@@ -370,7 +371,9 @@ scripts = [
         
         (party_set_slot,":village_no", slot_party_type, spt_village),
         (party_set_slot,":village_no", slot_village_raided_by, -1),
-      
+        #to be turned on later using improvements
+        (party_set_slot,":village_no", slot_weapon_production,0),
+        (party_set_slot,":village_no", slot_armor_production,0),
         (call_script, "script_refresh_village_defenders", ":village_no"),
         (call_script, "script_refresh_village_defenders", ":village_no"),
         (call_script, "script_refresh_village_defenders", ":village_no"),
@@ -28761,7 +28764,9 @@ scripts = [
        (replace_scene_props, banner_scene_props_begin, "spr_empty"),
      (try_end),
      (try_begin),
-       (neq, ":cur_leader", "trp_player"),
+       (this_or_next|neq, ":cur_leader", "trp_player"),
+       (party_slot_eq, "$current_town", slot_center_has_workshop, 0),
+       (party_slot_eq, "$g_encountered_party", slot_party_type, spt_village),
        (replace_scene_props, "spr_player_chest", "spr_locked_player_chest"),
      (try_end),
      ]),
@@ -33841,8 +33846,8 @@ scripts = [
      (try_begin),
        (eq, ":improvement_no", slot_center_has_manor),
        (str_store_string, s0, "@Manor"),
-       (str_store_string, s1, "@A manor lets you rest at the village and pay your troops half wages while you rest."),
-       (assign, reg0, 8000),
+       (str_store_string, s1, "@A manor lets you rest at the village and pay your troops half wages while you rest. Also allows you to station troops directly in your village."),
+       (assign, reg0, 8),
      (else_try),
        (eq, ":improvement_no", slot_center_has_workshop),
        (str_store_string, s0, "@Workshop"),
