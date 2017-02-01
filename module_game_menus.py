@@ -7286,13 +7286,14 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
       ("go_back_dot",[],"Go back.",[(jump_to_menu, "$g_next_menu")]),]),
 
   ("armor_menu",0,
-    "Your decide to order a batch of dirt-cheap armor(5 Mail Mittens, 5 Mail Chausses, 5 Haubergeon and 5 Flat Topped Helmets), it will cost you 1000 denars, it will take about {reg56} hours.",
+    "Your decide to order a batch of dirt-cheap armor(Mail Mittens, Mail Chausses, Haubergeon and Flat Topped Helmets), it will cost you 1000 denars, {reg56} set of each will be made every hour.",
     "none",
     [ ],
     [("order_armor_cont",[(store_troop_gold, ":cur_gold", "trp_player"),
                       (ge, ":cur_gold", 500),
                       (party_slot_eq, "$g_encountered_party", slot_armor_production, 0),],
-      "Go on.", [(assign, "$current_town", "$g_encountered_party"),
+      "Go on.", [(troop_remove_gold, "trp_player", 1000),
+                 (assign, "$current_town", "$g_encountered_party"),
                  (try_begin),
                    (call_script, "script_cf_enter_center_location_bandit_check"),
                  (else_try),
@@ -8860,6 +8861,29 @@ game_menus = [("start_game_0",menu_text_color(0xFF000000) | mnf_disable_all_keys
         (eq, ":player_can_draw_from_garrison", 1),],
       "Manage the garrison {s10}",
       [(change_screen_exchange_members,1),]),
+      ("castle_recruit_from_surroundings",
+      [(party_get_slot, ":town_lord", "$current_town", slot_town_lord),
+       (party_get_slot, ":recruitingornot", "$current_town", slot_center_recruitment),
+       (eq, ":town_lord", "trp_player"),
+       (eq, ":recruitingornot",0),
+       (party_slot_eq,"$current_town",slot_party_type, spt_castle),
+       
+
+	    ],
+      "Automatically recruit soldiers arround {s10}",
+      [(party_set_slot, "$current_town", slot_center_recruitment, 1),]),
+
+      ("castle_hualt_recruit_from_surroundings",
+      [(party_get_slot, ":town_lord", "$current_town", slot_town_lord),
+       (party_get_slot, ":recruitingornot", "$current_town", slot_center_recruitment),
+       (eq, ":town_lord", "trp_player"),
+       (eq, ":recruitingornot",1),
+       (party_slot_eq,"$current_town",slot_party_type, spt_castle),
+       
+
+	    ],
+      "Hault recruitment",
+      [(party_set_slot, "$current_town", slot_center_recruitment, 0),]),
 
       ("walled_center_manage",
       [(neg | party_slot_eq, "$current_town", slot_village_state, svs_under_siege),

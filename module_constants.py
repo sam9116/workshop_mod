@@ -391,7 +391,7 @@ slot_center_improvement_end_hour  = 125
 slot_party_last_traded_center     = 126 
 
 
-
+slot_center_recruitment          = 129
 slot_center_has_manor            = 130 #village
 slot_center_has_fish_pond        = 131 #village
 slot_center_has_watch_tower      = 132 #village

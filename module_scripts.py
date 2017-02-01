@@ -331,7 +331,7 @@ scripts = [
         (party_set_slot,":castle_no", slot_town_castle, ":interior_scene_no"),
         (store_add, ":interior_scene_no", "scn_castle_1_prison", ":offset"),
         (party_set_slot,":castle_no", slot_town_prison, ":interior_scene_no"),
-        
+        (party_set_slot,":castle_no",slot_center_recruitment,0),
         (party_set_slot,":castle_no", slot_town_reinforcement_party_template, "pt_center_reinforcements"),
         (party_set_slot,":castle_no", slot_party_type, spt_castle),
         (party_set_slot,":castle_no", slot_center_is_besieged_by, -1),
@@ -50864,5 +50864,24 @@ scripts = [
   		]
   	 ),
   # script_troop_copy_inventory
+
+("troop_count_items",
+ [
+    (store_script_param, ":troop_id", 1),
+  	(store_script_param, ":item_to_count", 2),
+
+    (assign,reg66,0),
+    (troop_get_inventory_capacity, ":inv_size", ":troop_id"),
+     (try_for_range, ":i_slot", 0, ":inv_size"),
+       (troop_get_inventory_slot, ":item", ":troop_id", ":i_slot"),
+
+
+		(eq, ":item", ":item_to_count"),
+        (val_add,reg66,1),
+
+		
+     
+     (try_end),]
+ ),
   ############################################################
 ]

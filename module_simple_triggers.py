@@ -2577,62 +2577,6 @@ simple_triggers = [
     (try_end),
     ]),
 
-(1,[
-
-    (try_for_range, ":center_no", villages_begin, villages_end),
-     (party_slot_eq, ":center_no", slot_town_lord, "trp_player"),
-      
-       (party_get_slot, ":goornogo",":center_no",slot_armor_production),
-
-      (eq,":goornogo",1),
-
-      (str_store_party_name, s4, ":center_no"),
-      (display_log_message, "@Begin armor production at {s4}"),
-
-
-      (party_get_slot, ":elder", ":center_no", slot_town_elder),      
-      (display_log_message, "@Getting elder id of {s4}"),
-      (store_add,":productbin",":elder",140),
-      (display_log_message, "@Getting product bin of {s4}"),
-       (troop_get_inventory_capacity, ":inv_size", ":productbin"),
-
-        (try_for_range, ":i_slot", 0, ":inv_size"),
-         (troop_get_inventory_slot, ":item_id", ":productbin", ":i_slot"),
-
-          (eq, ":item_id", "itm_iron"),
-          (try_begin),
-          (troop_ensure_inventory_space,":productbin",4),
-	      (troop_remove_item,":productbin",":item_id"),
-          (troop_add_items,":productbin","itm_mail_mittens",1),
-          (troop_add_items,":productbin","itm_mail_chausses",1),
-          (troop_add_items,":productbin","itm_haubergeon",1),
-          (troop_add_items,":productbin","itm_flat_topped_helmet",1),
-          (display_log_message, "@{s4} has produced some armor."),
-          
-          (else_try),
-          (display_log_message, "@There is no more space left at {s4}, halting production"),
-          (party_set_slot,":center_no",slot_armor_production,0),
-          (try_end),
-
-        (try_end),
-        (display_log_message, "@There are no more iron at {s4}, halting production"),
-        (party_set_slot,":center_no",slot_armor_production,0),
-
-
-
-
-
-
-
-   
-    (try_end),
-    
-    
-    
-    
-    
-    
-    ]),
 
   # Adding tournaments to towns
   # Adding bandits to towns and villages
@@ -4089,10 +4033,119 @@ simple_triggers = [
       (item_set_slot, "itm_wine", slot_item_food_bonus, 5),
       (item_set_slot, "itm_ale", slot_item_food_bonus, 4),
    ]),
-  (24,
-   []),
-  (24,
-   []),
+   #armor production
+ (1,[
+
+    (try_for_range, ":center_no", villages_begin, villages_end),
+     (party_slot_eq, ":center_no", slot_town_lord, "trp_player"),
+      
+       (party_get_slot, ":goornogo",":center_no",slot_armor_production),
+
+      (eq,":goornogo",1),
+
+      (str_store_party_name, s4, ":center_no"),
+      (display_log_message, "@Begin armor production at {s4}"),
+
+
+      (party_get_slot, ":elder", ":center_no", slot_town_elder),      
+      (display_log_message, "@Getting elder id of {s4}"),
+      (store_add,":productbin",":elder",140),
+      (display_log_message, "@Getting product bin of {s4}"),
+       #(troop_get_inventory_capacity, ":inv_size", ":productbin"),
+       (call_script, "script_troop_count_items", ":productbin", "itm_iron"),
+       # we now have how many iron pieces product bin currently holds
+       # one blacksmith will produce 1 set of armor every hour
+       (party_count_members_of_type,":countblacksmith",":center_no",1182),
+       (try_begin),
+           (val_min,":countblacksmith",reg66),
+           (display_log_message, "@There are {reg66} pieces of iron in this village"),
+           (try_begin),
+           (assign,":copyofblacksmithcount",":countblacksmith"),
+           (val_mul,":copyofblacksmithcount",4),
+          (troop_ensure_inventory_space,":productbin",":copyofblacksmithcount"),
+	      (troop_remove_items,":productbin","itm_iron",":countblacksmith"),
+          (troop_add_items,":productbin","itm_mail_mittens",":countblacksmith"),
+          (troop_add_items,":productbin","itm_mail_chausses",":countblacksmith"),
+          (troop_add_items,":productbin","itm_haubergeon",":countblacksmith"),
+          (troop_add_items,":productbin","itm_flat_topped_helmet",":countblacksmith"),
+          (display_log_message, "@{s4} has produced some armor."),
+          (val_min,reg66,":countblacksmith"),
+          
+          (else_try),
+          (display_log_message, "@There is no more space left at {s4}, halting production"),
+          (party_set_slot,":center_no",slot_armor_production,0),
+          (try_end),
+        (try_begin),
+        (le,reg66,0),
+        (display_log_message, "@There are no more iron at {s4}, halting production"),
+        (party_set_slot,":center_no",slot_armor_production,0),
+        (try_end),
+
+       (try_end),
+
+
+       
+
+
+
+
+
+
+
+   
+    (try_end),
+    
+    
+    
+    
+    
+    
+    ]),
+   #automatic recruitment
+   (12,[
+
+    (try_for_range, ":center_no", villages_begin, villages_end),
+     (party_slot_eq, ":center_no", slot_town_lord, "trp_player"),
+      #get the castle the village belongs to
+       (party_get_slot, ":recruitment_destination",":center_no",slot_village_bound_center),
+       (party_get_slot, ":goornogo",":recruitment_destination",slot_center_recruitment),
+      (eq,":goornogo",1),
+
+      (str_store_party_name, s4, ":center_no"),
+      (display_log_message, "@Begin recruitment at {s4}"),
+
+      	#Recruit volunteers
+    (try_begin),
+		(is_between, ":center_no", villages_begin, villages_end),
+	
+        (party_get_slot, ":troop_type", ":center_no", slot_center_npc_volunteer_troop_type),
+        (party_get_slot, ":troop_amount", ":center_no", slot_center_npc_volunteer_troop_amount),
+        (party_set_slot, ":center_no", slot_center_npc_volunteer_troop_amount, -1),
+        (party_add_members, ":center_no", ":troop_type", ":troop_amount"),
+        (display_log_message, "@Some soldiers has being recruited at {s4}"),
+    (try_end),
+
+
+
+    
+
+       
+
+
+
+
+
+
+
+   
+    (try_end),
+    
+    
+    
+    
+    
+    
+    ]),
   (24,
    []),
   (24,
