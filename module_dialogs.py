@@ -25189,6 +25189,16 @@ I suppose there are plenty of bounty hunters around to get the job done . . .", 
   #[party_tpl|pt_routed_warriors,"close_window_anythink_else", [],
   # "Anythink else.", "close_window", [(assign, "$g_leave_encounter",1)]],
 
+  #recuits
+
+  [party_tpl|pt_fresh_recruits,"start", [(eq,"$talk_context",tc_party_encounter)], "Do you want us to follow you?", "recruit_troop_ask",[]],
+  [anyone|plyr,"recruit_troop_ask", [], "Yes. Follow me", "recruit_troop_join",[]],
+  [anyone|plyr,"recruit_troop_ask", [], "No. Reinforce the garrison.", "close_window",[(assign, "$g_leave_encounter",1)]],
+  [anyone,"recruit_troop_join", [[neg|party_can_join]], "Unfortunately. You do not have room in your party for us.", "close_window",[(assign, "$g_leave_encounter",1)]],
+  [anyone,"recruit_troop_join", [], "We are at your command.", "close_window",[[party_join],(assign, "$g_leave_encounter",1)]],
+
+
+
 
 # Ryan BEGIN
   [anyone,"sell_prisoner_outlaws", [[store_troop_kind_count,0,"trp_looter"],[ge,reg(0),1],[assign,reg(1),reg(0)],[val_mul,reg(1),10],[val_mul,reg(2),reg(0)],[val_mul,reg(2),10]],

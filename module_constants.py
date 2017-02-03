@@ -571,7 +571,7 @@ spt_ship               = 16
 spt_cattle_herd        = 17
 spt_bandit_lair       = 18
 #spt_deserter           = 20
-
+spt_recruits            =21
 kingdom_party_types_begin = spt_kingdom_caravan
 kingdom_party_types_end = spt_kingdom_hero_party + 1
 
