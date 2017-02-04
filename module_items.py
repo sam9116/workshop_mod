@@ -271,7 +271,32 @@ items = [
  ["bodkin_arrows","Bodkin Arrows", [("piercing_arrow",0),("flying_missile",ixmesh_flying_ammo),("quiver_c", ixmesh_carry)], itp_type_arrows|itp_merchandise, itcf_carry_quiver_back_right, 
  350,weight(3)|abundance(50)|weapon_length(91)|thrust_damage(3,pierce)|max_ammo(28),imodbits_missile],
  ["bolts","Bolts", [("bolt",0),("flying_missile",ixmesh_flying_ammo),("bolt_bag", ixmesh_carry),("bolt_bag_b", ixmesh_carry|imodbit_large_bag)], itp_type_bolts|itp_merchandise|itp_default_ammo|itp_can_penetrate_shield, itcf_carry_quiver_right_vertical, 
- 64,weight(2.25)|abundance(90)|weapon_length(63)|thrust_damage(1,pierce)|max_ammo(29),imodbits_missile],
+ 64,weight(2.25)|abundance(90)|weapon_length(63)|thrust_damage(69,pierce)|max_ammo(29),imodbits_missile,
+ [
+     (ti_on_missile_hit,
+   [
+      #(display_log_message,"@Starting group damage calculation"),
+      (store_trigger_param_1, ":shooter_agent"),
+      
+      (agent_get_team,":shooter_team",":shooter_agent"),
+      (try_for_agents,":cur_agent"),
+        (str_store_troop_name,s67,":cur_agent"),
+        
+        (agent_is_alive, ":cur_agent"),
+        (agent_get_team,":cur_agent_team",":cur_agent"),
+        (neq,":cur_agent_team",":shooter_team"),
+        #(display_log_message,"@Starting group damage calculation for {s67}"),
+        (agent_get_position, pos2,":cur_agent"),
+        (get_distance_between_positions_in_meters,":check_distance",pos1,pos2),
+        (le,":check_distance",10),
+        (agent_deliver_damage_to_agent,":shooter_agent",":cur_agent",0,"itm_bolts"),
+        (try_end),
+
+    ]
+   )
+     
+     
+     ]],
  ["steel_bolts","Steel Bolts", [("bolt",0),("flying_missile",ixmesh_flying_ammo),("bolt_bag_c", ixmesh_carry)], itp_type_bolts|itp_merchandise|itp_can_penetrate_shield, itcf_carry_quiver_right_vertical, 
  210,weight(2.5)|abundance(20)|weapon_length(63)|thrust_damage(2,pierce)|max_ammo(29),imodbits_missile],
  ["cartridges","Cartridges", [("cartridge_a",0)], itp_type_bullets|itp_merchandise|itp_can_penetrate_shield|itp_default_ammo, 0, 
@@ -546,7 +571,13 @@ items = [
 
 ["heraldic_mail_with_surcoat", "Heraldic Mail with Surcoat", [("heraldic_armor_new_a",0)], itp_merchandise| itp_type_body_armor  |itp_covers_legs ,0,
  3454 , weight(22)|abundance(100)|head_armor(0)|body_armor(49)|leg_armor(17)|difficulty(7) ,imodbits_armor,
- [(ti_on_init_item, [(store_trigger_param_1, ":agent_no"),(store_trigger_param_2, ":troop_no"),(call_script, "script_shield_item_set_banner", "tableau_heraldic_armor_a", ":agent_no", ":troop_no")])]],
+ [(ti_on_init_item,
+   [(store_trigger_param_1, ":agent_no"),
+    (store_trigger_param_2, ":troop_no"),
+    (call_script, "script_shield_item_set_banner", "tableau_heraldic_armor_a", ":agent_no", ":troop_no")
+    ]
+   )
+  ]],
 ["heraldic_mail_with_tunic", "Heraldic Mail", [("heraldic_armor_new_b",0)], itp_merchandise| itp_type_body_armor  |itp_covers_legs ,0,
  3520 , weight(22)|abundance(100)|head_armor(0)|body_armor(50)|leg_armor(16)|difficulty(7) ,imodbits_armor,
  [(ti_on_init_item, [(store_trigger_param_1, ":agent_no"),(store_trigger_param_2, ":troop_no"),(call_script, "script_shield_item_set_banner", "tableau_heraldic_armor_b", ":agent_no", ":troop_no")])]],
