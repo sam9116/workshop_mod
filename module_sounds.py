@@ -209,6 +209,9 @@ sounds = [
  ("flag_returned", sf_2d|sf_priority_10|sf_vol_10, ["your_flag_returned.ogg"]),
  ("team_scored_a_point", sf_2d|sf_priority_10|sf_vol_10, ["you_scored_a_point.ogg"]),
  ("enemy_scored_a_point", sf_2d|sf_priority_10|sf_vol_10, ["enemy_scored_a_point.ogg"]),
+ ("explode3",sf_priority_7|sf_vol_10,["explode3.ogg"]),
+ ("explode4",sf_priority_7|sf_vol_10,["explode4.wav"]),
+ ("explode5",sf_priority_7|sf_vol_10,["explode5.wav"]),
  #INVASION MODE START
  ("ccoop_spawn_companion_0",sf_2d|sf_vol_8, ["encounter_farmer_2.ogg"]),
  ("ccoop_spawn_companion_1",sf_2d|sf_vol_8, ["encounter_farmer_5.ogg"]),

@@ -4112,7 +4112,7 @@ simple_triggers = [
       (eq,":goornogo",1),
 
       (str_store_party_name, s4, ":center_no"),
-      (display_log_message, "@Begin recruitment at {s4}"),
+      #(display_log_message, "@Begin recruitment at {s4}"),
 
       	#Recruit volunteers
     (try_begin),
@@ -4122,7 +4122,7 @@ simple_triggers = [
         (party_get_slot, ":troop_amount", ":center_no", slot_center_npc_volunteer_troop_amount),
         (party_set_slot, ":center_no", slot_center_npc_volunteer_troop_amount, -1),
         (party_add_members, ":center_no", ":troop_type", ":troop_amount"),
-        (display_log_message, "@Some soldiers has being recruited at {s4}"),
+        #(display_log_message, "@Some soldiers has being recruited at {s4}"),
     (try_end),
 
 
@@ -4153,11 +4153,11 @@ simple_triggers = [
             (party_slot_eq, ":center_no", slot_town_lord, "trp_player"),
             (store_faction_of_party, ":recuitment_faction", ":center_no"),       
             (party_get_slot, ":recruitment_destination",":center_no",slot_village_bound_center),
-            (display_log_message, "@Are we Recruiting at {s4}?"),
+            #(display_log_message, "@Are we Recruiting at {s4}?"),
             (party_get_slot, ":goornogo",":recruitment_destination",slot_center_recruitment),
             (eq,":goornogo",1),
-            (display_log_message, "@Yes we are at {s4}."),
-            (display_log_message, "@Then check for how many fresh recruit we have at {s4}."),
+            #(display_log_message, "@Yes we are at {s4}."),
+            #(display_log_message, "@Then check for how many fresh recruit we have at {s4}."),
             (party_count_members_of_type,":count_recruit_swadia",":center_no",35),
             (party_count_members_of_type,":count_recruit_vaegir",":center_no",47),
             (party_count_members_of_type,":count_recruit_nord",":center_no",73),

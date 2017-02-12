@@ -1815,6 +1815,7 @@ somt_shield = 10
 somt_temporary_object = 11
 
 
+
 #NORMAL ACHIEVEMENTS
 ACHIEVEMENT_NONE_SHALL_PASS = 1,
 ACHIEVEMENT_MAN_EATER = 2,

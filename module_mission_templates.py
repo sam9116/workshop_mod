@@ -35,6 +35,12 @@ from module_constants import *
 pilgrim_disguise = [itm_pilgrim_hood,itm_pilgrim_disguise,itm_practice_staff, itm_throwing_daggers]
 af_castle_lord = af_override_horse | af_override_weapons| af_require_civilian
 
+
+
+
+
+
+
 multiplayer_server_check_belfry_movement = (
   0, 0, 0, [],
   [
@@ -667,6 +673,7 @@ common_battle_init_banner = (
     (agent_get_troop_id, ":troop_no", ":agent_no"),
     (call_script, "script_troop_agent_set_banner", "tableau_game_troop_label_banner", ":agent_no", ":troop_no"),
   ])
+
 
 
 common_arena_fight_tab_press = (
@@ -2113,6 +2120,7 @@ mission_templates = [
     ],
     [
       common_inventory_not_available,
+
       (ti_tab_pressed, 0, 0, [(display_message,"str_cannot_leave_now")], []),
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
 
@@ -2978,6 +2986,7 @@ mission_templates = [
      (47,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
      ],
     [
+        
       common_battle_mission_start,
       common_battle_tab_press,
       common_battle_init_banner,
@@ -3058,6 +3067,7 @@ mission_templates = [
      (46,mtef_defenders|mtef_team_0|mtef_archers_first,af_override_horse,aif_start_alarmed,1,[]),
      ],
     [
+ 
       common_battle_mission_start,
       common_battle_tab_press,
       common_battle_init_banner,
@@ -3486,6 +3496,7 @@ mission_templates = [
          ]),
       
       common_inventory_not_available,
+
 
       (0, 0, ti_once,
        [
@@ -3998,6 +4009,7 @@ mission_templates = [
     ],
     [
       common_inventory_not_available,
+
       (ti_tab_pressed, 0, 0, [(display_message, "str_cannot_leave_now")], []),
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
 
@@ -4066,6 +4078,7 @@ mission_templates = [
     ],
     [
       common_inventory_not_available,
+
       (ti_tab_pressed, 0, 0, [(display_message, "str_cannot_leave_now")], []),
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
 
@@ -7728,6 +7741,7 @@ mission_templates = [
       (47,mtef_visitor_source|mtef_team_0,af_override_horse,aif_start_alarmed,1,[]),
      ],
     [
+
       common_battle_mission_start,
       common_battle_init_banner,
 
@@ -7747,6 +7761,7 @@ mission_templates = [
       common_custom_battle_tab_press,
       common_custom_battle_question_answered,
       common_inventory_not_available,
+
       common_custom_siege_init,
       common_music_situation_update,
       custom_battle_check_victory_condition,
@@ -13400,6 +13415,12 @@ mission_templates = [
          ]),
       ],
   ),
+
+
+
+
+
+
 #INVASION MODE START
     ###############################################
   ####################################  WAVE MODE
@@ -14723,6 +14744,7 @@ mission_templates = [
       common_battle_init_banner,
     
       common_inventory_not_available,
+
       
       (ti_on_agent_spawn, 0, 0, [],
       [
@@ -15107,6 +15129,7 @@ mission_templates = [
       common_battle_init_banner,
     
       common_inventory_not_available,
+ 
       
       (ti_on_agent_spawn, 0, 0, [],
       [              
@@ -16009,6 +16032,9 @@ mission_templates = [
          ]),
       ],
   ),
+
+
+
 
 
 ]

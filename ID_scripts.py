@@ -610,5 +610,9 @@ script_add_player_to_cur_tableau_for_coop = 608
 script_add_troop_to_cur_tableau_for_coop = 609
 script_troop_copy_inventory = 610
 script_troop_count_items = 611
+script_fire_auto_weapon = 612
+script_init_item_accuracy = 613
+script_init_item_shoot_speed = 614
+script_init_item_speed_rating = 615
 
 

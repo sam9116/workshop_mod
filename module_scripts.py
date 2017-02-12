@@ -13,6 +13,29 @@ from header_music import *
 from header_map_icons import *
 from header_presentations import *
 from ID_animations import *
+######################################################################
+##################### ADD THESE BELOW OTHER IMPORTS ##################
+################# THESE STORE ITEM STATS IN ITEM_SLOTS ###############
+######################################################################
+from module_items import *
+
+def get_item_accuracy():
+    item_accuracy = []
+    for i_item in xrange(len(items)):
+     item_accuracy.append((item_set_slot, i_item, slot_item_accuracy, get_leg_armor(items[i_item][6])))
+    return item_accuracy[:]
+
+def get_item_shoot_speed():
+    item_shoot_speed = []
+    for i_item in xrange(len(items)):
+     item_shoot_speed.append((item_set_slot, i_item, slot_item_shoot_speed, get_missile_speed(items[i_item][6])))
+    return item_shoot_speed[:]
+
+def get_item_speed_rating():
+    item_speed_rating = []
+    for i_item in xrange(len(items)):
+     item_speed_rating.append((item_set_slot, i_item, slot_item_speed_rating, get_speed_rating(items[i_item][6])))
+    return item_speed_rating[:]
 
 
 ####################################################################################################################
@@ -50865,7 +50888,7 @@ scripts = [
   	 ),
   # script_troop_copy_inventory
 
-("troop_count_items",
+    ("troop_count_items",
  [
     (store_script_param, ":troop_id", 1),
   	(store_script_param, ":item_to_count", 2),
@@ -50883,5 +50906,16 @@ scripts = [
      
      (try_end),]
  ),
-  ############################################################
+
+
+
+
+
+
+
+
+
+
 ]
+
+
