@@ -50908,6 +50908,109 @@ scripts = [
  ),
 
 
+    ("fire_auto_weapon",[
+      (store_script_param, ":shooter_agent", 1),
+      (store_script_param, ":shooter_weapon", 2),
+      (store_script_param, ":shooter_ammo", 3),
+
+  (item_get_slot, ":auto_accuracy", ":shooter_weapon", slot_item_accuracy),
+      (store_sub, ":inaccuracy", 100, ":auto_accuracy"),
+
+#################### CALCULATE AGENT INACCURACY #######################
+      (agent_get_troop_id, ":shooter_troop", ":shooter_agent"),
+      (store_proficiency_level, ":firing_skill", ":shooter_troop", wpt_firearm),
+      (store_sub, ":firing_disability", 500, ":firing_skill"),
+      (val_div, ":firing_disability", 10),
+
+########################### CALCULATE WANDER ##########################
+      (item_get_slot, ":weapon_speed", ":shooter_weapon", slot_item_speed_rating),
+      (store_sub, ":weapon_recoil", 150, ":weapon_speed"),
+      (assign, ":max_recoil", ":weapon_recoil"),
+  (val_div, ":weapon_recoil", 3),
+      (agent_get_slot, ":wander", ":shooter_agent", slot_agent_firearm_wander),
+      (val_add, ":wander", ":weapon_recoil"),
+      (val_clamp, ":wander", 0, ":max_recoil"),
+      (agent_set_slot, ":shooter_agent", slot_agent_firearm_wander, ":wander"),
+  
+      (agent_get_animation, ":cur_anim", ":shooter_agent", 0),
+############### INCREASE INACCURACY DUE TO MOVEMENT ###################
+      (try_begin),
+         (is_between, ":cur_anim", "anim_run_forward", "anim_stand_to_crouch"),
+         (val_mul, ":wander", 2),
+      (try_end),
+################# INCREASE INACCURACY DUE TO JUMP #####################
+      (try_begin),
+         (is_between, ":cur_anim", "anim_jump", "anim_stand_unarmed"),
+         (val_mul, ":wander", 3),
+      (try_end),
+
+      (val_add, ":wander", ":firing_disability"),
+  (val_div, ":wander", 3),
+      (val_add, ":inaccuracy", ":wander"),
+
+############# RAISE POS TO EYE LEVEL & MOVE TO END OF GUN ###############
+      (agent_get_look_position, pos1, ":shooter_agent"),
+      (position_move_y, pos1, 80, 0),
+
+      (try_begin),
+         (agent_get_horse, ":horse", ":shooter_agent"),
+         (gt, ":horse", 0),
+         (position_move_z, pos1, 240, 0),
+      (else_try),
+         (position_move_z, pos1, 150, 0),
+      (try_end),
+
+#################### SOUNDS AND PARTICLES PLAY HERE #####################
+      (item_get_slot, ":sound_id", ":shooter_weapon", slot_item_sound),
+      (agent_play_sound, ":shooter_agent", ":sound_id"),
+
+############ GET INITIAL RANDOMIZED BULLET ANGLE ROTATION ###############
+      (store_random_in_range, ":y_rotation", 0, 360),
+      (position_rotate_y, pos1, ":y_rotation"),
+         
+#################### SPAWN BULLET WITH INACCURACY #######################
+      (store_random_in_range, ":x_inaccuracy", 0, ":inaccuracy"),
+      (set_fixed_point_multiplier, 10),
+      (position_rotate_x_floating, pos1, ":x_inaccuracy"),
+
+  (item_get_slot, ":velocity", ":shooter_weapon", slot_item_shoot_speed),
+      (set_fixed_point_multiplier, 1),
+  (add_missile, ":shooter_agent", pos1, ":velocity", ":shooter_weapon", 0, ":shooter_ammo", 0),
+   ]),
+      ("set_auto_weapon_stats",[
+      (store_script_param, ":auto_item_id", 1),
+      (store_script_param, ":auto_accuracy", 2),
+      #(store_script_param, ":auto_velocity", 3),   used in old system
+      #(store_script_param, ":auto_mass", 4),   used in old system
+      (store_script_param, ":auto_penetration", 3),
+      (store_script_param, ":auto_impact", 4),
+      (store_script_param, ":auto_damage", 5),
+      (store_script_param, ":auto_recoil", 6),
+      (store_script_param, ":auto_shotgun", 7),
+
+######################### ADJUST VALUES FOR UES ########################
+      (store_sub, ":auto_inaccuracy", 100, ":auto_accuracy"),
+      (val_mul, ":auto_inaccuracy", 10),
+      #(val_div, ":auto_velocity", -3),   used in old system
+      #(val_mul, ":auto_mass", -1),   used in old system
+      (store_sub, ":modified_penetration", 100, ":auto_penetration"),
+      (store_sub, ":modified_impact", 100, ":auto_impact"),
+      
+######################### SET VALUES TO SLOTS ##########################
+      (item_set_slot, ":auto_item_id", slot_item_auto_inaccuracy, ":auto_inaccuracy"),
+      #(item_set_slot, ":auto_item_id", slot_item_auto_velocity, ":auto_velocity"),   used in old system
+      #(item_set_slot, ":auto_item_id", slot_item_auto_mass, ":auto_mass"),   used in old system
+      (item_set_slot, ":auto_item_id", slot_item_auto_penetration, ":modified_penetration"),
+      (item_set_slot, ":auto_item_id", slot_item_auto_impact, ":modified_impact"),
+      (item_set_slot, ":auto_item_id", slot_item_auto_damage, ":auto_damage"),
+      (item_set_slot, ":auto_item_id", slot_item_auto_recoil, ":auto_recoil"),
+      (item_set_slot, ":auto_item_id", slot_item_auto_shotgun, ":auto_shotgun"),
+   ]),
+   ("init_item_accuracy", get_item_accuracy()),
+   ("init_item_shoot_speed", get_item_shoot_speed()),
+   ("init_item_speed_rating", get_item_speed_rating()),
+
+
 
 
 

@@ -1265,7 +1265,20 @@ items = [
 ["warhorse_sarranid","Sarranian War Horse", [("warhorse_sarranid",0)], itp_merchandise|itp_type_horse, 0, 1811,abundance(40)|hit_points(165)|body_armor(58)|difficulty(4)|horse_speed(40)|horse_maneuver(44)|horse_charge(32)|horse_scale(112),imodbits_horse_basic|imodbit_champion, [], [fac_kingdom_6]],
 ["warhorse_steppe","Steppe Charger", [("warhorse_steppe",0)], itp_merchandise|itp_type_horse, 0, 1400,abundance(45)|hit_points(150)|body_armor(40)|difficulty(4)|horse_speed(40)|horse_maneuver(50)|horse_charge(28)|horse_scale(112),imodbits_horse_basic|imodbit_champion, [], [fac_kingdom_3,fac_kingdom_2]],
 
-["uzi", "UZI", [("flintlock_pistol",0)], itp_type_pistol |itp_merchandise|itp_primary|itp_cant_use_on_horseback, itcf_shoot_pistol|itcf_carry_revolver_right|itcf_reload_pistol, 67 , weight(3.5)|spd_rtng(100) | shoot_speed(160) | thrust_damage(40, pierce)|max_ammo(30)|accuracy(60),imodbits_none, [(ti_on_init_item, [(item_set_slot, "itm_uzi", slot_item_sound, "snd_pistol_shot"),])]],
+["uzi", "UZI", [("flintlock_pistol",0)], itp_type_pistol |itp_merchandise|itp_primary|itp_cant_use_on_horseback, itcf_shoot_pistol|itcf_carry_revolver_right|itcf_reload_pistol, 67 , weight(3.5)|spd_rtng(100) | shoot_speed(160) | thrust_damage(40, pierce)|max_ammo(30)|accuracy(60),imodbits_none, 
+ 
+ [(ti_on_init_item,
+   [
+       (item_set_slot, "itm_uzi", slot_item_sound, "snd_pistol_shot"),
+       
+   ]
+  )
+ ]
+  
+
+
+ 
+ ],
 
 ["ak_47", "AK-47", [("crossbow_a",0)], itp_type_musket |itp_merchandise|itp_primary|itp_two_handed|itp_cant_use_on_horseback, itcf_shoot_musket|itcf_carry_crossbow_back|itcf_reload_musket, 67 , weight(4.3)|spd_rtng(75) | shoot_speed(160) | thrust_damage(50, pierce)|max_ammo(50)|accuracy(100),imodbits_none, [(ti_on_init_item, [(item_set_slot, "itm_ak_47", slot_item_sound, "snd_pistol_shot"),])]],
 

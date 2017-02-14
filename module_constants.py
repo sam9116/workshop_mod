@@ -1814,7 +1814,46 @@ somt_spawned_unsheathed_item = 9
 somt_shield = 10
 somt_temporary_object = 11
 
+#autofire begin
+slot_agent_firearm_wander = 30
+slot_agent_autofire_ready = 31
+#autofire end
 
+#autofire begin
+slot_item_accuracy = 62
+slot_item_shoot_speed = 63
+slot_item_speed_rating = 64
+slot_item_sound = 65
+#autofire end
+
+
+scene_prop_bullet_shooter = 7
+scene_prop_bullet_weapon = 8
+scene_prop_animation = 9
+scene_prop_hitbox_agent = 10
+scene_prop_num_drops = 11
+scene_prop_prev_collision = 12
+
+slot_agent_recoil = 26
+slot_agent_spread = 27
+slot_agent_inaccuracy = 28
+
+
+slot_item_auto_inaccuracy = 62
+#slot_item_auto_velocity = 63   used in old system
+#slot_item_auto_mass = 64   used in old system
+slot_item_auto_penetration = 63
+slot_item_auto_impact = 64
+slot_item_auto_damage = 65
+slot_item_auto_recoil = 66
+slot_item_auto_shotgun = 67
+
+slot_item_body_armor = 68
+slot_item_leg_armor = 69
+slot_item_hit_points = 70
+slot_item_head_armor = 71
+slot_item_shield_height = 72
+slot_item_shield_width = 73
 
 #NORMAL ACHIEVEMENTS
 ACHIEVEMENT_NONE_SHALL_PASS = 1,

@@ -38,6 +38,118 @@ af_castle_lord = af_override_horse | af_override_weapons| af_require_civilian
 
 
 
+####################################################################
+####################### INITIALIZE AUTOFIRE ########################
+####################################################################
+common_init_auto_fire = (
+    ti_after_mission_start, 0, ti_once, [], [
+         (this_or_next|multiplayer_is_server),
+         (neg|game_in_multiplayer_mode),
+
+######### NEEDED TO PREVENT UNINITIALIZE SLOTS FOR CLIENTS #########
+############# ADD EACH SCRIPT CALL FROM AUTO ITEM HERE #############
+         (try_begin),
+            (multiplayer_is_dedicated_server),
+            (call_script, "script_set_auto_weapon_stats", "itm_m_249", "snd_pistol_shot"),
+            (call_script, "script_set_auto_weapon_stats", "itm_AK_47", "snd_pistol_shot"),
+            (call_script, "script_set_auto_weapon_stats", "itm_UZI", "snd_pistol_shot"),
+         (try_end),
+
+############### NEEDED TO PREVENT UNINITIALIZE SLOTS ###############
+      (call_script, "script_init_item_accuracy"),
+      (call_script, "script_init_item_shoot_speed"),
+  (call_script, "script_init_item_speed_rating"),
+    ])
+
+common_auto_fire_held = (
+   0.1, 0.5, 0, [ # adjust the delay to match the time it takes to play the ready animation
+  (key_is_down, key_left_mouse_button),
+   ],[
+       (display_message,"@checking for autofire",0xFFFFAAAA),
+      (get_player_agent_no, ":shooter_agent"),
+  (agent_set_slot, ":shooter_agent", slot_agent_autofire_ready, 1),
+    ])
+
+common_auto_fire_clicked = (
+   0.1, 0, 0, [
+      (get_player_agent_no, ":shooter_agent"),
+      (agent_get_animation, ":shooter_stance", ":shooter_agent", 1),
+      (this_or_next|eq, ":shooter_stance", "anim_reload_musket"),
+      (this_or_next|eq, ":shooter_stance", "anim_reload_pistol"),
+  (neg|game_key_is_down, gk_attack),
+   ],[
+      (get_player_agent_no, ":shooter_agent"),
+  (agent_set_slot, ":shooter_agent", slot_agent_autofire_ready, 0),
+    ])
+
+####################################################################
+################## CHECK IF BULLET CAN BE FIRED ####################
+####################################################################
+common_auto_fire = (
+   0.1, 0, 0, [
+      (this_or_next|multiplayer_is_server),
+      (neg|game_in_multiplayer_mode),
+   ],[
+      (try_for_agents, ":shooter_agent"),
+         (agent_is_alive, ":shooter_agent"),
+         (try_begin),
+############# CHECK IF AGENT WIELDS AN AUTOFIRE WEAPON #############
+            (agent_get_wielded_item, ":cur_weapon", ":shooter_agent", 0),
+            (is_between, ":cur_weapon", "itm_warhorse_steppe", "itm_items_end"),
+
+########### CHECK IF AGENT IS IN READY WEAPON ANIMATION ############
+            (agent_get_animation, ":shooter_stance", ":shooter_agent", 1),
+            (this_or_next|eq, ":shooter_stance", "anim_ready_pistol"),
+            (eq, ":shooter_stance", "anim_ready_musket"),
+
+(assign, ":ready_flag", 0),
+(try_begin), #Limits the AI to burst firing
+   (agent_is_non_player, ":shooter_agent"),
+   (agent_get_combat_state, ":cur_state", ":shooter_agent"),
+   (eq, ":cur_state", 3),
+   (assign, ":ready_flag", 1),
+(else_try), #Check if a player has held down the attack button
+   (neg|agent_is_non_player, ":shooter_agent"),
+   (agent_slot_eq, ":shooter_agent", slot_agent_autofire_ready, 1),
+   (display_message,"@auto fire is good to go",0xFFFFAAAA),
+   (assign, ":ready_flag", 1),
+            (try_end),
+(eq, ":ready_flag", 1),
+
+################## FIND WEAPON AND SET AMMO TYPE ##################
+            (try_for_range, ":cur_slot", 0, 4),
+               (agent_get_item_slot, ":cur_item", ":shooter_agent", ":cur_slot"),
+               (eq, ":cur_item", ":cur_weapon"),
+               (assign, ":weapon_slot", ":cur_slot"),
+            (try_end),
+
+            (assign, ":ammo_item", "itm_cartridges"),
+############################ REDUCE AMMO ###########################
+            (try_begin),
+               (agent_get_ammo_for_slot, ":ammo", ":shooter_agent", ":weapon_slot"),
+               (gt, ":ammo", 0),
+               (val_sub, ":ammo", 1),
+               (agent_set_ammo, ":shooter_agent", ":cur_weapon", ":ammo"),
+
+####################### SET FIRING ANIMATION #######################
+               (try_begin),
+                  (eq, ":cur_weapon", "itm_uzi"),
+                  (agent_set_animation, ":shooter_agent", "anim_release_pistol", 1),
+               (else_try),
+                  (agent_set_animation, ":shooter_agent", "anim_release_musket", 1),
+               (try_end),
+   
+               (call_script, "script_fire_auto_weapon", ":shooter_agent", ":cur_weapon", ":ammo_item"),
+            (try_end),
+         (else_try),
+################## REDUCES RECOIL FOR ALL AGENTS ###################
+            (agent_get_slot, ":wander", ":shooter_agent", slot_agent_firearm_wander),
+            (val_sub, ":wander", 20),
+            (val_min, ":wander", 0),
+            (agent_set_slot, ":shooter_agent", slot_agent_firearm_wander, ":wander"),
+         (try_end),
+      (try_end),
+   ])
 
 
 
@@ -1549,7 +1661,8 @@ mission_templates = [
      (22,mtef_visitor_source,af_override_fullhelm,0,1,[]),(23,mtef_visitor_source,af_override_fullhelm,0,1,[]),(24,mtef_visitor_source,af_override_fullhelm,0,1,[]),(25,mtef_visitor_source,af_override_fullhelm,0,1,[]),(26,mtef_visitor_source,af_override_fullhelm,0,1,[]),
      (27,mtef_visitor_source,af_override_fullhelm,0,1,[]),(28,mtef_visitor_source,af_override_fullhelm,0,1,[]),(29,mtef_visitor_source,af_override_fullhelm,0,1,[]),(30,mtef_visitor_source,af_override_fullhelm,0,1,[]),(31,mtef_visitor_source,af_override_fullhelm,0,1,[]),
      ],
-    [],
+    [  
+        ],
   ),
   
 #----------------------------------------------------------------
@@ -1941,8 +2054,14 @@ mission_templates = [
          ]),
 
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
+      
+
 
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
       
       (ti_tab_pressed, 0, 0,
        [
@@ -2005,8 +2124,14 @@ mission_templates = [
          (eq,":answer",0),
          (finish_mission),
          ]),
+         
+
       
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       (1, 4, ti_once,
        [
@@ -2120,6 +2245,9 @@ mission_templates = [
     ],
     [
       common_inventory_not_available,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       (ti_tab_pressed, 0, 0, [(display_message,"str_cannot_leave_now")], []),
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
@@ -2187,6 +2315,9 @@ mission_templates = [
      ],
     [
       common_inventory_not_available,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       common_battle_init_banner,
 
@@ -2230,6 +2361,10 @@ mission_templates = [
      (4,mtef_attackers|mtef_team_1,0,aif_start_alarmed,0,[]),
      ],
     [
+        common_init_auto_fire,   
+        common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
       (ti_on_agent_spawn, 0, 0, [],
        [
          (store_trigger_param_1, ":agent_no"),
@@ -2438,7 +2573,10 @@ mission_templates = [
     [
       common_battle_tab_press,
       common_battle_init_banner,
-
+      common_init_auto_fire,   
+        common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
       (ti_question_answered, 0, 0, [],
        [(store_trigger_param_1,":answer"),
         (eq,":answer",0),
@@ -2497,7 +2635,10 @@ mission_templates = [
     [
       common_battle_tab_press,
       common_battle_init_banner,
-
+      common_init_auto_fire,   
+        common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
       (ti_question_answered, 0, 0, [],
        [(store_trigger_param_1,":answer"),
         (eq,":answer",0),
@@ -3040,7 +3181,11 @@ mission_templates = [
       common_siege_check_defeat_condition,
       common_battle_order_panel,
       common_battle_order_panel_tick,
+      common_init_auto_fire,
       common_inventory_not_available,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
       common_siege_init_ai_and_belfry,
       common_siege_move_belfry,
       common_siege_rotate_belfry,
@@ -3089,6 +3234,10 @@ mission_templates = [
       common_battle_order_panel,
       common_battle_order_panel_tick,
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       (ti_on_agent_killed_or_wounded, 0, 0, [],
        [
@@ -3496,6 +3645,10 @@ mission_templates = [
          ]),
       
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
 
       (0, 0, ti_once,
@@ -4009,6 +4162,10 @@ mission_templates = [
     ],
     [
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       (ti_tab_pressed, 0, 0, [(display_message, "str_cannot_leave_now")], []),
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
@@ -4078,6 +4235,10 @@ mission_templates = [
     ],
     [
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       (ti_tab_pressed, 0, 0, [(display_message, "str_cannot_leave_now")], []),
       (ti_before_mission_start, 0, 0, [], [(call_script, "script_change_banners_and_chest")]),
@@ -7661,6 +7822,10 @@ mission_templates = [
       common_custom_battle_tab_press,
       common_custom_battle_question_answered,
       common_inventory_not_available,
+      common_init_auto_fire,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       (ti_before_mission_start, 0, 0, [],
        [
@@ -7760,7 +7925,11 @@ mission_templates = [
 
       common_custom_battle_tab_press,
       common_custom_battle_question_answered,
+      common_init_auto_fire,
       common_inventory_not_available,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       common_custom_siege_init,
       common_music_situation_update,
@@ -14742,8 +14911,11 @@ mission_templates = [
     ],
     [
       common_battle_init_banner,
-    
+      common_init_auto_fire,
       common_inventory_not_available,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
 
       
       (ti_on_agent_spawn, 0, 0, [],
@@ -15127,8 +15299,11 @@ mission_templates = [
     ],    
     [
       common_battle_init_banner,
-    
+      common_init_auto_fire,
       common_inventory_not_available,
+      common_auto_fire_held,
+common_auto_fire_clicked,
+common_auto_fire,
  
       
       (ti_on_agent_spawn, 0, 0, [],
