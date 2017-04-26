@@ -111,7 +111,7 @@ common_auto_fire = (
 (else_try), #Check if a player has held down the attack button
    (neg|agent_is_non_player, ":shooter_agent"),
    (agent_slot_eq, ":shooter_agent", slot_agent_autofire_ready, 1),
-   (display_message,"@auto fire is good to go",0xFFFFAAAA),
+   #(display_message,"@auto fire is good to go",0xFFFFAAAA),
    (assign, ":ready_flag", 1),
             (try_end),
 (eq, ":ready_flag", 1),

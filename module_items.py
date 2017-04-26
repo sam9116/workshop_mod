@@ -1265,6 +1265,39 @@ items = [
 ["warhorse_sarranid","Sarranian War Horse", [("warhorse_sarranid",0)], itp_merchandise|itp_type_horse, 0, 1811,abundance(40)|hit_points(165)|body_armor(58)|difficulty(4)|horse_speed(40)|horse_maneuver(44)|horse_charge(32)|horse_scale(112),imodbits_horse_basic|imodbit_champion, [], [fac_kingdom_6]],
 ["warhorse_steppe","Steppe Charger", [("warhorse_steppe",0)], itp_merchandise|itp_type_horse, 0, 1400,abundance(45)|hit_points(150)|body_armor(40)|difficulty(4)|horse_speed(40)|horse_maneuver(50)|horse_charge(28)|horse_scale(112),imodbits_horse_basic|imodbit_champion, [], [fac_kingdom_3,fac_kingdom_2]],
 
+["nra_offizier_uniform", "NRA Officer Uniform", [("NRA_Offizier",0)], itp_merchandise| itp_type_body_armor |itp_civilian |itp_covers_legs ,0,
+ 6 , weight(1)|abundance(100)|head_armor(0)|body_armor(6)|leg_armor(1)|difficulty(0) ,imodbits_cloth ],
+
+ ["8ra_offizier_uniform", "8RA Officer Uniform", [("8RA_Offizier",0)], itp_merchandise| itp_type_body_armor |itp_civilian |itp_covers_legs ,0,
+ 6 , weight(1)|abundance(100)|head_armor(0)|body_armor(6)|leg_armor(1)|difficulty(0) ,imodbits_cloth ],
+
+ ["nra_offizier_uniform_revised", "NRA Officer Uniform", [("NRA_Offizier_Revised",0)], itp_merchandise| itp_type_body_armor |itp_civilian |itp_covers_legs ,0,
+ 6 , weight(1)|abundance(100)|head_armor(0)|body_armor(6)|leg_armor(1)|difficulty(0) ,imodbits_cloth ],
+
+  ["german_rifle_ammo_pouch","German Rifle Ammo Pouches", [("cartridge_a",0),("flying_missile",ixmesh_flying_ammo),("German_Ammo_Belt", ixmesh_carry),], itp_type_bullets|itp_merchandise|itp_can_penetrate_shield|itp_default_ammo,itcf_carry_dagger_front_right, 
+ 41,weight(2.25)|abundance(90)|weapon_length(3)|thrust_damage(1,pierce)|max_ammo(60),imodbits_missile],
+
+ ["nra_wrapping_boots", "NRA Wrapping Boots", [("Uniform_NRA_offizier_puttee",0)], itp_merchandise| itp_type_foot_armor |itp_civilian | itp_attach_armature ,0,
+ 3 , weight(1)|abundance(100)|head_armor(0)|body_armor(0)|leg_armor(3)|difficulty(0) ,imodbits_cloth ],
+
+ ["nra_cap", "NRA Cap", [("NRA_Cap",0)], itp_merchandise| itp_type_head_armor  |itp_civilian ,0, 5 , weight(1)|abundance(100)|head_armor(7)|body_armor(0)|leg_armor(0)|difficulty(0) ,imodbits_cloth ],
+
+ ["stahlhelm", "M35 Stahlhelm & Cap", [("Stahlhelm",0)], itp_type_head_armor   ,0, 278 , weight(2)|abundance(100)|head_armor(30)|body_armor(0)|leg_armor(0) ,imodbits_cloth ],
+
+ ["zhongzheng_rifle", "Type ZhongZheng Rifle", [("zhongzheng_rifle",0)], itp_type_musket |itp_merchandise|itp_primary|itp_two_handed|itp_next_item_as_melee ,itcf_shoot_crossbow|itcf_reload_musket, 
+67 , weight(2.5)|difficulty(0)|spd_rtng(45) | shoot_speed(59) | thrust_damage(44 ,  pierce)|max_ammo(5),imodbits_none,
+ 
+ [(ti_on_weapon_attack, [(play_sound,"snd_zhongzheng_shot")])]
+  
+
+
+
+],
+
+
+["zhongzheng_rifle_melee",         "Type ZhongZheng Rifle", [("zhongzheng_rifle",0)], itp_type_polearm|itp_offset_lance|itp_merchandise| itp_primary|itp_wooden_parry, itc_staff,
+ 85 , weight(2.25)|difficulty(0)|spd_rtng(98) | weapon_length(120)|swing_damage(20 , blunt) | thrust_damage(26 ,  pierce),imodbits_polearm ],
+
 ["uzi", "UZI", [("flintlock_pistol",0)], itp_type_pistol |itp_merchandise|itp_primary|itp_cant_use_on_horseback, itcf_shoot_pistol|itcf_carry_revolver_right|itcf_reload_pistol, 67 , weight(3.5)|spd_rtng(100) | shoot_speed(160) | thrust_damage(40, pierce)|max_ammo(30)|accuracy(60),imodbits_none, 
  
  [(ti_on_init_item,
